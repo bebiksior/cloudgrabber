@@ -35,9 +35,9 @@ async fn main() -> Result<(), anyhow::Error> {
 
     let home_dir = dirs::home_dir().ok_or_else(|| anyhow::anyhow!("Could not determine the home directory."))?;
     let ssl_dir = home_dir.join(Path::new(".cloudgrabber").join("cloud").join("ssl"));
-    let repo_dir = home_dir.join(".cloudgrabber");
+    let repo_dir = home_dir.join(".cloudgrabber").join("cloud");
     let repo_url = "https://github.com/trickest/cloud.git";
-    
+
     if !ssl_dir.exists() || ssl_dir.read_dir()?.next().is_none() {
         git2::Repository::clone(repo_url, &repo_dir)?;
     }
